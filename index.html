@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Dashboard</title>
+    <link id="theme-link" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+    <aside class="sidebar">
+        <div class="logo">C</div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </a>
+            <a href="history.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </a>
+        </nav>
+        <div class="nav-item logout" id="logoutBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="search-box glass-panel">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="user-profile glass-panel">
+                <span id="userEmailDisplay">Профиль</span>
+                <div class="avatar">👩‍💻</div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="left-column">
+                <div class="controls glass-panel">
+                    <div class="panel-header">
+                        <h2>Настройки</h2>
+                    </div>
+                    <label>Вставь код:</label>
+                    <textarea id="codeInput" placeholder="Вставь сюда свой код...">function greet(name) {
+  console.log(`Привет, ${name}!`);
+  return true;
+}</textarea>
+
+                    <div class="settings-row">
+                        <div>
+                            <label>Язык:</label>
+                            <select id="languageSelect">
+                                <option value="javascript">JavaScript</option>
+                                <option value="java">Java</option>
+                                <option value="html">HTML</option>
+                                <option value="css">CSS</option>
+                                <option value="python">Python</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Тема:</label>
+                            <select id="themeSelect">
+                                <option value="prism-tomorrow">Тёмная</option>
+                                <option value="prism">Светлая</option>
+                                <option value="prism-okaidia">Okaidia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="downloadBtn">Скачать PNG</button>
+                        <button id="saveCardBtn" class="btn-secondary">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="stats-row">
+                    <div class="stat-card glass-panel">
+                        <div class="stat-icon" style="background: rgba(138, 115, 243, 0.2); color: #8a73f3;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="charCount">0</h3>
+                            <p>Символов</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card glass-panel">
+                        <div class="stat-icon" style="background: rgba(244, 124, 186, 0.2); color: #f47cba;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="lineCount">0</h3>
+                            <p>Строк</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-wrapper">
+                    <div class="card-container" id="cardContainer">
+                        <div class="card-bg-wave"></div>
+                        <div class="card-header">
+                            <span class="filename" id="filename">script.js</span>
+                        </div>
+                        <pre class="code-window"><code class="language-javascript" id="codeOutput"></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
